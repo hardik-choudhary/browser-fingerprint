@@ -10,7 +10,7 @@ function set_fingerprint_data(id, data) {
  * Use only once, on one refresh 
  * Don't forgot to add iframe to page
 */
-function getFingerprint() {
+function getFingerprint(rawprints = false) {
     fingerprints = 0;
     fingerprintsData = {};
     return new Promise(function (resolve, reject) {
@@ -76,12 +76,15 @@ function getFingerprint() {
                 AudioFingerprint((t)=>{set_fingerprint_data('audioTwo', sha256(t));});
                 setTimeout(function () {
                     let fpString = "";
-                    let fpStrings = "";
                     for(var key in fingerprintsData) {
                         fpString += fingerprintsData[key]+",";
-                        fpStrings += key+" = "+fingerprintsData[key]+",\n";
                     }
-                    resolve(sha256(fpString));
+                    if(rawprints){
+                        resolve({fp:sha256(fpString), rawfp:JSON.stringify(fingerprintsData)});
+                    }
+                    else{
+                        resolve(sha256(fpString));
+                    }
                 }, 100);
             },100);
         } catch (error) {
