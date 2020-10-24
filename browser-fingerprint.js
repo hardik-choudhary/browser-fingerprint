@@ -387,7 +387,7 @@ function getIframeRects() {
         return a.charAt(0).toUpperCase() + a.substr(1, a.length - 1)
     }
     var e = ["", "", ""], d = [], f = "";
-    for (var iframe = document.getElementById("rects-iframe").contentWindow.document, h = 0; h < 3; h++) {
+    for (var iframe = document.getElementById("tt-fp-rects-iframe").contentWindow.document, h = 0; h < 3; h++) {
         var rect = iframe.getElementById("rect" + h);
         d[h] = rect.getClientRects()[0],
             rect.style.border = "1px #eee solid";
