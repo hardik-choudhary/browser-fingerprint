@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="browser-fingerprint.js"></script>
+</head>
+
+<body>
+    <h1>FingerPrinting Test</h1>
+
+
+    <button onclick="showFingerPrint()">get FingerPrint</button>
+
+    <h4 id="fp-id"></h4>
+
+    <iframe style="width: 0px; height: 0px; border: 0px;" id="rects-iframe" sandbox="allow-same-origin"
+        src="./rects_iframe.html" scrolling="no">iFrame Disabled</iframe>
+    <script>
+        function showFingerPrint() {
+            var ele = document.querySelector("#fp-id");
+            ele.innerHTML = "Loading...";
+            getFingerprint().then((t) => {
+                ele.innerHTML = t;
+            }, (e) => { console.log("Error: " + e) });
+        }
+    </script>
+
+</body>
+
+</html>
