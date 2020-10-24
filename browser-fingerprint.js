@@ -68,10 +68,7 @@ function getFingerprint() {
 
             set_fingerprint_data('webGLUnMasked', webGLUnMaskedData());
             set_fingerprint_data('webGL', webGLBaseData());
-            set_fingerprint_data('WebGLFingerprint', sha256(getWebGLFingerprint()));
-            set_fingerprint_data('IframeRects', getIframeRects());
-            
-            set_fingerprint_data('audioContext', audioContextFingerprint());
+            set_fingerprint_data('WebGLFingerprint', sha256(getWebGLFingerprint()));            
             audioFpOne().then((t)=>{
                 set_fingerprint_data('audioOne', sha256(t));
             });
@@ -348,6 +345,7 @@ function AudioFingerprint(callback) {
     };
     oscillator.start(0);
 }
+/** Not Using right now */
 function audioContextFingerprint() {
     function a(a, b, c) {
         for (var d in b) "dopplerFactor" === d || "state" === d || "speedOfSound" === d || "currentTime" ===
@@ -381,6 +379,7 @@ function audioContextFingerprint() {
 }
 
 /** Iframe Rects */
+/** Not Using right now */
 function getIframeRects() {
     var outputValue = "";
     function ucFirst(a) {
