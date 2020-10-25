@@ -71,22 +71,22 @@ function getFingerprint(rawprints = false) {
             set_fingerprint_data('WebGLFingerprint', sha256(getWebGLFingerprint()));            
             audioFpOne().then((t)=>{
                 set_fingerprint_data('audioOne', sha256(t));
+                AudioFingerprint((t)=>{
+                    set_fingerprint_data('audioTwo', sha256(t));
+                    setTimeout(function () {
+                        let fpString = "";
+                        for(var key in fingerprintsData) {
+                            fpString += fingerprintsData[key]+",";
+                        }
+                        if(rawprints){
+                            resolve({fp:sha256(fpString), rawfp:JSON.stringify(fingerprintsData)});
+                        }
+                        else{
+                            resolve(sha256(fpString));
+                        }
+                    }, 100);
+                });
             });
-            setTimeout(function () {
-                AudioFingerprint((t)=>{set_fingerprint_data('audioTwo', sha256(t));});
-                setTimeout(function () {
-                    let fpString = "";
-                    for(var key in fingerprintsData) {
-                        fpString += fingerprintsData[key]+",";
-                    }
-                    if(rawprints){
-                        resolve({fp:sha256(fpString), rawfp:JSON.stringify(fingerprintsData)});
-                    }
-                    else{
-                        resolve(sha256(fpString));
-                    }
-                }, 100);
-            },100);
         } catch (error) {
             reject(error);
         }
