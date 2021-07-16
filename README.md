@@ -2,7 +2,7 @@
 
 Browser and Device Fingerprinting Using Vanilla JavaScript
 
-**It's not finished yet**
+**Warning: It's not finished yet. Not ready to use**
 
 **Uses:**
 `getFingerprint().then((fingerprint) => {
